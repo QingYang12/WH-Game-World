@@ -1,0 +1,193 @@
+
+<html>
+	<head>
+		<meta charset="gb1312"/>
+	</head>
+	<body>	
+		<!--底板 父DIV  parentDiv-->
+		<div   id="parentDiv" style="width:100%;height:100%;background-image:url('background1.jpg');background-size:100% 100%;">
+		</div>
+		<!--转盘 DIV  mainDiv-->
+		<div   id="mainDiv" style="width:30%;height:30%;background-image:url('pan1.png');background-size:100% 100%;border-radius:100%;position:fixed;top:15%;left:36%;z-index:3;"></div>
+		<!--按钮 DIV-->
+		<div   id="anniu" style="width:10%;height:10%;background-image:url('zz.png');background-size:100% 100%;position:fixed;top:85%;left:45%;z-index:3;" onclick="fly_knife()"></div>
+		<!--分数 DIV-->
+		<div   id="anniu" style="width:10%;height:10%;position:fixed;top:5%;left:85%;z-index:3;" ><span id='score'></span></div>
+		<!--飞刀待发射域 DIV-->
+		<div id="p" style="width:0%;height:0%;">
+		</div>
+		<!--飞刀转盘域 DIV-->
+		<div id="ppan" style="width:0%;height:0%;">
+		</div>
+	</body>
+	<script>
+  /*初始化*/
+		var c_width=document.body.clientWidth;
+		var numpan=Math.floor(Math.random()*7)+1;//1-7的随机数 转盘
+		document.getElementById("mainDiv").style.backgroundImage="url('pan"+numpan+".png')";//随机转盘
+		var numbb=Math.floor(Math.random()*8)+1;//1-8的随机数 背景
+		document.getElementById("parentDiv").style.backgroundImage="url('background"+numbb+".jpg')";//随机背景
+		document.getElementById("mainDiv").style.width=c_width*0.3;
+		document.getElementById("mainDiv").style.height=c_width*0.3;
+		//60算扎上圆盘
+		
+  /*调整参数计算初始速度*/
+		/*
+			力矩公式: F1*L1=F2*L2;
+			角动量公式:L＝r·mv 
+			角速度公式:W0=(2*Pi)/t
+			线速度公式:V＝W0*r
+			角加速度:β＝dω / dt   // 角加速度等于切向加速度除以半径
+		*/
+		
+		var e_deg=0; //总转动角度
+		var d=e_deg%360;//总转动角度(360)
+		var t=0;//毫秒
+		var time=0;//秒
+		var v=0;//瞬时速度
+		var mf=0.05//飞刀质量Kg
+		var m=0.5;//圆盘质量Kg-------------------------------------调整项
+		var F=1;//初始力量F  N   1/100------------------------调整项5 2
+		var Ff=0.01;//摩擦力Ff   N   1/1000-----------------------调整项0.1 0.01
+		var R=0.06;//半径
+		var a=0;//加速度
+		var w=0;
+			/////
+			//结果v0
+			/////f*t=m*v /假设t=1s  -->f=mv -->v=f/m     例子： -->10/0.5-->20 m/s
+		var v0=(F-Ff)/(m*R);//初始速度 /假设F作用在物体上1S
+		
+		v=v0;
+		F=0;
+		a=(F-Ff)/m;//加速度
+  /*时间计时器*/
+		var tx=0.01;
+		var tt=setInterval(function(){
+				t++;
+				time=tx*t;
+				
+				//if(v>0){
+					//旋转
+					transformPan();
+					//减速
+					sub_V0();
+				//}
+		},10);
+		
+		
+		
+  /*------函数------*/	
+		//减速函数
+		function sub_V0(){
+			 
+			//if(v>0){
+				//if(time%1==0){
+					var arr=document.getElementsByName("num_knife_input");
+					var sum=0;
+					if(arr!=undefined&&arr.length>0){
+						for(var i=0;i<=arr.length-1;i++){
+							sum+=parseInt(arr[i].value);
+						}
+					}
+					w=sum;
+					console.log(w);
+					//document.getElementById("score").innerHTML=parseInt(w);
+					v=7+parseInt(w);//parseInt(v)+parseInt(w)+parseInt(a)
+					console.log(v);
+				//}
+			/*}else{
+				v=0;
+			}*/
+			
+		}
+		//圆盘旋转函数
+		function transformPan(){
+			e_deg+=v;//总转动角度
+			var d=e_deg%360;
+			document.getElementById("mainDiv").style.transform="rotate("+d+"deg)";
+			var widths=document.body.clientWidth;
+			var heights=document.body.clientHeight;
+		}
+			
+		//飞刀旋转
+		function transformknife(num_knifes){
+			var imagek=document.getElementById(num_knifes).style.backgroundImage;//document.getElementById("num_knife").style.backgroundImage="url('dao"+numdao+".png')";//
+			var num_knife=num_knifes+"";
+			var p=document.getElementById("p");
+				p.removeChild(document.getElementById(num_knife));
+			var ppan=document.getElementById("ppan");
+				ppan.innerHTML+="<div   id='"+num_knife+"'  style='width:5%;height:15%;background-image:"+imagek+";background-size:100% 100%;position:fixed;top:15%;left:36%;z-index:2;'><input id='"+num_knife+"_input' name='num_knife_input'  type='hidden' value='0'/></div>";
+
+			var widths=document.body.clientWidth;
+			var heights=document.body.clientHeight;
+			var h=(heights/widths)*15+15+14;
+			document.getElementById(num_knife).style.top=h+"%";
+			document.getElementById(num_knife).style.left="48.5%";
+			var knife_deg=0;
+			var tx=0.01;//时间单位
+			var t=0;//时间计数
+			var time=0;//时间总量
+			
+			setInterval(function(){
+				t++;
+				time=tx*t;
+				//if(v>0){
+					knife_deg+=v;
+					var d=knife_deg%360;
+					document.getElementById(num_knife).style.transform="rotate("+d+"deg) translate(0,150%)";
+					var num_knife_input_id=num_knife+"_input";
+					document.getElementById(num_knife_input_id).value=W_CountFun(d);
+				//}
+			},10);
+		}
+		//飞刀函数
+		function fly_knife(){
+			var num_knife=Math.floor(Math.random()*999999)+1;//1-1000000的随机数 飞刀id
+			var p=document.getElementById("p");
+			var plist=p.getElementsByTagName("div");
+			//alert(plist.length);
+			if(plist.length==0){
+				var numdao=Math.floor(Math.random()*9)+1;//1-9的随机数
+				p.innerHTML+="<div   id='"+num_knife+"'  style='width:5%;height:15%;background-image:url(dao"+numdao+".png);background-size:100% 100%;position:fixed;top:75%;left:48%;z-index:2;'></div>";
+				document.getElementById(num_knife).style.position="fixed";
+				document.getElementById(num_knife).style.top="75%";
+				document.getElementById(num_knife).style.left="48%";
+
+			}else{
+				var knife=plist[0];
+				
+				var tt=setInterval(function(){//飞刀飞出动作
+					var y=knife.style.top;
+					knife.style.top=parseInt(y.substring(0,y.length-1))-4+"%";
+					//60算扎上圆盘
+					if(parseInt(y.substring(0,y.length-1))<60){//到圆盘距离60
+							clearInterval(tt);
+							transformknife(knife.id);
+					}
+				},20);
+			}
+		}
+		//角速度计算函数
+		function W_CountFun (a){
+			var as=a* Math.PI / 180;//弧度= 角度 * Math.PI / 180;
+			var ws=0;
+			var f=0;
+			var xxx=Math.PI/2;
+			if(90>a>=0){//3象限
+				f=mf*10*Math.sin(as+xxx);//+xxx
+			}
+			if(180>a>=90){//2象限
+				f=mf*10*Math.cos(as-Math.PI/2+xxx);
+			}
+			if(270>a>=180){//1象限
+				f=mf*10*Math.sin(as-Math.PI+xxx);
+			}
+			if(360>a>=270){//4象限
+				f=mf*10*Math.cos(as-Math.PI*3/2+xxx);
+			}
+			//f*tx=mf*v*r
+			ws=(f)/(mf*R*R)*0.001;
+			return ws;
+		}
+	</script>
+</html>
