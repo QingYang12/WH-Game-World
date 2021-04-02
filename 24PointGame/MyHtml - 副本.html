@@ -1,0 +1,389 @@
+<html>
+  <head>
+    <title>24_point</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<script>
+		function init(){
+			document.getElementById('topic1').innerHTML = '8';
+			document.getElementById('topic2').innerHTML = '3';
+			document.getElementById('topic3').innerHTML = '1';
+			document.getElementById('topic4').innerHTML = '2';
+		}
+		var second = 0;
+	    var millisecond=0;
+	    var int;
+	  
+	    function start() {
+	      	int=setInterval(function(){timer();},50);
+			document.getElementById("startBtn").disabled="disabled";
+	    }
+	  
+	    function timer() {
+	      millisecond=millisecond+50;
+	      if(millisecond>=1000)
+	      {
+	        millisecond=0;
+	        second=second+1;
+	      }
+	      document.getElementById('timetext').innerHTML=second+'秒'+millisecond+'毫秒';
+	  
+	    }
+	  
+	    function stop() {
+	     	window.clearInterval(int);
+			document.getElementById("startBtn").disabled="";
+	    }
+		function Reset() {
+			window.clearInterval(int);
+	     	millisecond=second=0;
+	      	document.getElementById('timetext').innerHTML='00秒000毫秒';
+			document.getElementById("startBtn").disabled="";
+	    }
+	
+		function resetAll(){
+			count = 0;
+			flagCount = 0;
+			document.getElementById("span1").innerHTML = "";
+			document.getElementById("span2").innerHTML = "";
+			document.getElementById("span3").innerHTML = "";
+			document.getElementById("span4").innerHTML = "";
+			document.getElementById("span5").innerHTML = "";
+			document.getElementById("span6").innerHTML = "";
+			document.getElementById("result1").innerHTML = "";
+			document.getElementById("result2").innerHTML = "";
+			document.getElementById("result3").innerHTML = "";
+			document.getElementById("img1").src = "./img/img/back.png";
+			document.getElementById("img2").src = "./img/img/back.png";
+			document.getElementById("img3").src = "./img/img/back.png";
+			document.getElementById("hidden1").value = "";
+			document.getElementById("hidden2").value = "";
+			document.getElementById("hidden3").value = "";
+			
+		}
+		// 加法运算 
+		function checkAdd(flag){
+			alert(flag);
+		}
+		
+		var count = 1;
+		var flagCount = 1;
+		// 点击数字
+		function checkNum(topicNmu){
+			var num = document.getElementById('topic'+topicNmu).innerHTML;
+			if(count == 1){
+				document.getElementById("span1").innerHTML = num;
+				document.getElementById("topic"+topicNmu).innerHTML = "";
+				count ++;
+			}else if(count == 2){
+				// 判断是否有符号
+				var imgUrl = document.getElementById("img1").src;
+				if(imgUrl.indexOf("back.png")==-1){
+					document.getElementById("span2").innerHTML = num;
+					document.getElementById("topic"+topicNmu).innerHTML = "";
+					count ++;
+					var result = calculate(1);
+					document.getElementById("topic1").innerHTML = result;
+				}else{
+					return;
+				}
+			}else if(count == 3){
+				document.getElementById("span3").innerHTML = num;
+				document.getElementById("topic"+topicNmu).innerHTML = "";
+				count++;
+			}else if(count == 4){
+				// 判断是否有符号
+				var imgUrl = document.getElementById("img2").src;
+				if(imgUrl.indexOf("back.png")==-1){
+					document.getElementById("span4").innerHTML = num;
+					document.getElementById("topic"+topicNmu).innerHTML = "";
+					count ++;
+					var result = calculate(2);
+					document.getElementById("topic1").innerHTML = result;
+				}else{
+					return;
+				}
+			}else if(count == 5){
+				document.getElementById("span5").innerHTML = num;
+				document.getElementById("topic"+topicNmu).innerHTML = "";
+				count++;
+			}else if(count == 6){
+				// 判断是否有符号
+				var imgUrl = document.getElementById("img3").src;
+				if(imgUrl.indexOf("back.png")==-1){
+					document.getElementById("span6").innerHTML = num;
+					document.getElementById("topic"+topicNmu).innerHTML = "";
+					count ++;
+					var result = calculate(3);
+					if(result != 24){
+						alert("错了呦!");
+					}else{
+						alert("真棒!答对了哟!");
+					}
+				}else{
+					return;
+				}
+			}
+		}
+		// 点击运算符
+		function chenkFlag(url,num){
+			if(flagCount ==  1){
+				var span1 = document.getElementById("span1").innerHTML;
+				if(span1 != "" ){
+					document.getElementById("img1").src = url;
+					document.getElementById("hidden1").value = num;
+					flagCount++;
+				}
+			}else if(flagCount == 2){
+				var span3 = document.getElementById("span3").innerHTML;
+				if(span3 != "" ){
+					document.getElementById("img2").src = url;
+					document.getElementById("hidden2").value = num;
+					flagCount++;
+				}
+			}else if(flagCount == 3){
+				var span5 = document.getElementById("span5").innerHTML;
+				if(span5 != "" ){
+					document.getElementById("img3").src = url;
+					document.getElementById("hidden3").value = num;
+					flagCount++;
+				}
+			}
+			
+		}
+		// 计算
+		function calculate(num){
+			var result;
+			if(num == 1){
+				var span1 = document.getElementById("span1").innerHTML;
+				var span2 = document.getElementById("span2").innerHTML;
+				var flag = document.getElementById("hidden1").value;
+				
+				if(flag == 1){
+					result = parseInt(span1) + parseInt(span2);
+					document.getElementById("result1").innerHTML = result;
+				}else if(flag == 2){
+					result = parseInt(span1) - parseInt(span2);
+					document.getElementById("result1").innerHTML = result;
+				}else if(flag == 3){
+					result = parseInt(span1) * parseInt(span2);
+					document.getElementById("result1").innerHTML = result;
+				}else if(flag == 4){
+					result = parseInt(span1) / parseInt(span2);
+					document.getElementById("result1").innerHTML = result;
+				}
+			}else if(num == 2){
+				var span1 = document.getElementById("span3").innerHTML;
+				var span2 = document.getElementById("span4").innerHTML;
+				var flag = document.getElementById("hidden2").value;
+				
+				if(flag == 1){
+					result = parseInt(span1) + parseInt(span2);
+					document.getElementById("result2").innerHTML = result;
+				}else if(flag == 2){
+					result = parseInt(span1) - parseInt(span2);
+					document.getElementById("result2").innerHTML = result;
+				}else if(flag == 3){
+					result = parseInt(span1) * parseInt(span2);
+					document.getElementById("result2").innerHTML = result;
+				}else if(flag == 4){
+					result = parseInt(span1) / parseInt(span2);
+					document.getElementById("result2").innerHTML = result;
+				}
+			}else if(num == 3){
+				var span1 = document.getElementById("span5").innerHTML;
+				var span2 = document.getElementById("span6").innerHTML;
+				var flag = document.getElementById("hidden3").value;
+				
+				if(flag == 1){
+					result = parseInt(span1) + parseInt(span2);
+					document.getElementById("result3").innerHTML = result;
+				}else if(flag == 2){
+					result = parseInt(span1) - parseInt(span2);
+					document.getElementById("result3").innerHTML = result;
+				}else if(flag == 3){
+					result = parseInt(span1) * parseInt(span2);
+					document.getElementById("result3").innerHTML = result;
+				}else if(flag == 4){
+					result = parseInt(span1) / parseInt(span2);
+					document.getElementById("result3").innerHTML = result;
+				}
+			}
+			return result;
+		}
+		
+		
+		
+		
+	</script>
+  </head>
+  <body onload="init()">
+		<div style="background-image: url(./back.jpg);background-size:100% 100%;">
+			<div style="height:20%;width:100%;" align="center">
+				<br/>
+				<h1>24 - Point</h1>
+			</div>
+			<div style="height:80%;width:100%">
+				<div style="float:left;width:20%;height:100%;" align="center">
+					<font size="4px">用时</font><br><br>
+					<span id="timetext">00秒000毫秒</span><br/><br/>
+					<input type="button" onclick="start()" value="开始游戏" id="startBtn" />
+					<input type="button" onclick="stop()" value="暂停"/>					
+					<!--<input type="button" onclick="Reset()" value="重置"/>-->
+				</div>
+				<div style="float:left;width:60%;height:100%;">
+					<div style="float:left;width:100%;height:75%;" align="center">
+						<!-- 运算过程 -->
+						<br/> <br/>
+						<table style="width: 90%;text-align: center;border: 10px;border-color: blue;">
+							<tr>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span1"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img id="img1" alt="" src="./img/img/back.png" width="100%" height="100%">
+										<input type="hidden" id="hidden1" value=""/>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span2"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img alt="" src="./img/img/=.png" width="100%" height="100%">
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="result1"></span></font>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span3"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img id="img2" alt="" src="./img/img/back.png" width="100%" height="100%">
+										<input type="hidden" id="hidden2" value=""/>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span4"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img alt="" src="./img/img/=.png" width="100%" height="100%">
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="result2"></span></font>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span5"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img id="img3" alt="" src="./img/img/back.png" width="100%" height="100%">
+										<input type="hidden" id="hidden3" value=""/>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="span6"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;">
+										<img alt="" src="./img/img/=.png" width="100%" height="100%">
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;background-color:black">
+										<br/><font color="white" size="7px"><span id="result3"></span></font>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<!-- 题目数字 -->
+					<div style="float:left;width:100%;height:25%;" align="center">
+						<table style="width: 90%;text-align: center;">
+							<tr>
+								<td align="center">
+									<div style="width:100px;height:100px;" align="center">
+										<br/> <font color="white" size="7px" onclick="checkNum(1)"><span id="topic1"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;" align="center"> 
+										<br/> <font color="white" size="7px" onclick="checkNum(2)"><span id="topic2"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;" align="center">
+										<br/> <font color="white" size="7px" onclick="checkNum(3)"><span id="topic3"></span></font>
+									</div>
+								</td>
+								<td align="center">
+									<div style="width:100px;height:100px;" align="center"> 
+										<br/> <font color="white" size="7px" onclick="checkNum(4)"><span id="topic4"></span></font>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div style="float:left;width:15%;height:100%;" align="center">
+					<!-- 运算符号 -->
+					<table style="width: 90%;text-align: center;">
+						<tr>
+							<td align="center">
+								<div style="width:100px;height:100px;">
+									<img alt="加号" src="./img/img/add.jpg" width="100%" height="100%" onclick="chenkFlag('./img/img/add.png',1)">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<div style="width:100px;height:100px;"> 
+									<img alt="减号" src="./img/img/less.jpg" width="100%" height="100%" onclick="chenkFlag('./img/img/less.png',2)">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<div style="width:100px;height:100px;k">
+									<img alt="乘号" src="./img/img/x.jpg" width="100%" height="100%" onclick="chenkFlag('./img/img/x.png',3)">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<div style="width:100px;height:100px;"> 
+									<img alt="除号" src="./img/img/chu.jpg" width="100%" height="100%" onclick="chenkFlag('./img/img/chu.png',4)">
+								</div>
+							</td>
+						</tr>
+					</table><br/><br/>
+					<input type="button" onclick="resetAll()" value="重置"/>
+				</div>
+			</div>
+		</div>
+  </body>
+</html>
