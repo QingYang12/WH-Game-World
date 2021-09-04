@@ -18,7 +18,8 @@
 		</div>
 		<!--积分 DIV  -->
 		<div   id="scoreCount" style="width:5%;height:9%;text-align:center;font-size:30px;color:red;background-image:url('scoreCount.png');z-index:1;background-size:100% 100%;position:fixed;top:1%;left:90%;"></div>
-
+		<div   id="scoreLevelleft" style="width:5%;height:9%;text-align:center;font-size:30px;color:red;background-image:url('left1.png');z-index:1;background-size:100% 100%;position:fixed;top:1%;left:80%;"></div>
+		<div   id="scoreLevelright" style="width:5%;height:9%;text-align:center;font-size:30px;color:red;background-image:url('right1.png');z-index:1;background-size:100% 100%;position:fixed;top:1%;left:85%;"></div>
 		<!--英雄DIV-->
 		<div   id="mainDiv" style="width:7%;height:10%;background-image:url('main.png');background-size:100% 100%;position:fixed;top:70%;left:45%;"  touchmove="mousemovess(event)"  ></div>
 		<div   id="p" style="width:0%;height:0%;">
@@ -30,13 +31,62 @@
 			//敌人基本步长
 		    var vb=2;
 			var score=0;
+			var level=1;
 			shanshuo();//章鱼闪烁
 			function init(){
-				//计分
+				//升级判断   10级
+				//0-20      第一级
+				//20-60     第二级
+				//60-100    第三级
+				//100-150   第四级
+				//150-200   第五级
+				//200-300   第六级
+				//300-400   第七级
+				//400-500   第八级
+				//500-600   第九级
+				//600-700   第十级
 				var scorett=setInterval(function(){
-					score++;
-					var scores=document.getElementById("scoreCount");
-					scores.innerHTML="</br>"+score;
+					if(score<=20){
+						level=1;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(20<=score<=60){
+						level=2;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(60<=score<=100){
+						level=3;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(100<=score<=150){
+						level=4;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(150<=score<=200){
+						level=5;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(200<=score<=300){
+						level=6;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(300<=score<=400){
+						level=7;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(400<=score<=500){
+						level=8;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else if(500<=score<=600){
+						level=9;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}else {
+						level=10;
+						document.getElementById("scoreLevelleft").style.backgroundImage="left"+level+".png";
+						document.getElementById("scoreLevelright").style.backgroundImage="right"+level+".png";
+					}
 				},1000);
 				//碰撞检测
 				var pp=setInterval(function(){
@@ -47,7 +97,7 @@
 				var numlr=Math.floor(Math.random()*100);//0-99的随机数 左右出现的随机位置
 				var numtop=Math.floor(Math.random()*100);//0-99的随机数 上方出现的随机位置
 				var numtt=Math.floor(Math.random()*100);//0-99的随机数 下方出现的随机位置
-				var imgNumlr=Math.floor(Math.random()*7)+1;//1-7的随机数 左右img序号
+				var imgNumlr=Math.floor(Math.random()*10)+1;//1-10的随机数 左右img序号
 				var imgNumtop=Math.floor(Math.random()*5)+1;//1-5的随机数 上img序号
 				var imgNumtt=Math.floor(Math.random()*2)+1;//1-2的随机数 下img序号
 				var dr=Math.floor(Math.random()*10000000);//0-9999999的随机数 id
@@ -65,7 +115,7 @@
 					imglr="right";
 				}
 				//background-color:red;
-				var divLeftRight="<div id='"+dr+"'  style='width:7%;height:10%;background-image:url("+imglr+imgNumlr+".png"+");z-index:2;background-size:100% 100%;position:fixed;top:"+numlr+"%;left:"+vcount+"%;'></div>";
+				var divLeftRight="<div id='"+dr+"'  style='width:7%;height:10%;background-image:url("+imglr+imgNumlr+".png"+");z-index:2;background-size:100% 100%;position:fixed;top:"+numlr+"%;left:"+vcount+"%;' data-level="+imgNumlr+" data-pop='true'  ></div>";
 				var divTop="<div id='"+topdr+"'  style='width:14%;height:20%;background-image:url(tops"+imgNumtop+".png"+");z-index:1;background-size:100% 100%;position:fixed;top:-20%;left:"+numtop+"%;'></div>";
 				var divtt="<div id='"+ttdr+"'  style='width:14%;height:20%;background-image:url(top"+imgNumtt+".png"+");z-index:4;background-size:100% 100%;position:fixed;top:100%;left:"+numtt+"%;'></div>";
 				
@@ -184,6 +234,11 @@
 			},200);
 			
 		}
+		function scoreAdd(){
+			score++;
+			var scores=document.getElementById("scoreCount");
+			scores.innerHTML="</br>"+score;
+		}
 		//判断碰撞
 		//判左右div碰撞
 			function lrpop(){
@@ -212,9 +267,20 @@
 						
 						var R=60;
 						if(RF<R){
-							alert(score);
-							parentDiv.innerHTML="";
-							location.reload();
+							var drlevel=cs[i].getAttribute('data-level');
+							var drpop=cs[i].getAttribute('data-pop');
+							var drdisplay=cs[i].style.display;
+							if(level>=drlevel){
+								if(drpop=='true'){
+									scoreAdd();
+									cs[i].setAttribute('data-pop','false');
+									cs[i].style.display="none";
+								}
+							}else{
+								alert("你死掉了：分数："+score);
+								parentDiv.innerHTML="";
+								location.reload();
+							}
 						}
 					}
 				}
