@@ -83,6 +83,7 @@
 						displayTitle(level);
 					} if(70<score){
 						alert("恭喜你，你已经通关了 太厉害了      ：分数："+score);
+						score=0;
 						parentDiv.innerHTML="";
 						location.reload();
 					}
@@ -288,9 +289,9 @@
 									cs[i].style.display="none";
 								}
 							}else{
-								alert("你死掉了：分数："+score);
+								/*alert("你死掉了：分数："+score);
 								parentDiv.innerHTML="";
-								location.reload();
+								location.reload();*/
 							}
 						}
 					}
