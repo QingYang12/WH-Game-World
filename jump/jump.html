@@ -4,21 +4,27 @@
 		<meta charset="gb1312"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	</head>
-	<body  onmousemove="mousemove(event)"  >	
+	<body  onmousemove="mousemove(event)">	
 		<!--底板 父DIV  parentDiv-->
 		<div   id="parentDiv" style="width:100%;height:100%;background-image:url('background2.jpg');background-size:100% 100%;">
 		</div>
 		<!--开始 DIV  -->
-		<div   id="startDiv" style="width:50%;height:40%;background-image:url('start.jpg');z-index:3;background-size:100% 100%;display:block;position:fixed;top:25%;left:25%;">
-			<input type="button" value="Start Game" onclick="start()"/>
+		<div   id="startDiv" style="width:50%;height:40%;background-image:url('start.jpg');z-index:3;background-size:100% 100%;display:block;position:absolute;top:25%;left:25%;">
+			<div  value="Start Game" style="width:25%;height:30%;text-align:left;font-size:40px;color:red;font-weight:bold;" onclick="start()">
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Start
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Game
+			</div>
 		</div>
 		<!--结束 DIV  -->
 		<div   id="endDiv" style="width:50%;height:40%;background-image:url('end.jpg');z-index:3;background-size:100% 100%;display:none;">
 			<input type="button" value="Restart Game" onclick="restart()"/>
 		</div>
 		<!--积分 DIV  -->
-		<div   id="scoreCount" style="width:5%;height:9%;text-align:center;font-size:30px;color:red;background-image:url('scoreCount.png');z-index:1;background-size:100% 100%;position:fixed;top:1%;left:90%;"></div>
-
+		<div   id="scoreCount" style="width:5%;height:9%;text-align:center;font-size:80px;color:red;font-weight:bold;background-image:url('scoreCount.png');z-index:1;background-size:100% 100%;position:fixed;top:1%;left:90%;">0</div>
+		<div   id="scoreLevelArrdiv" style="width:40%;height:7%;text-align:center;font-size:30px;color:red;background-image:url('title.png');z-index:3;background-size:100% 100%;position:absolute;top:1%;left:50%;float:right;">
+		</div>
 		<!--英雄DIV-->
 		<div   id="mainDiv" style="width:7%;height:10%;background-image:url('main.png');background-size:100% 100%;position:fixed;top:70%;left:45%;"  touchmove="mousemovess(event)"  ></div>
 		<div   id="p" style="width:0%;height:0%;">
@@ -30,13 +36,58 @@
 			//敌人基本步长
 		    var vb=2;
 			var score=0;
+			var level=1;
 			shanshuo();//章鱼闪烁
 			function init(){
-				//计分
+				//升级判断   10级
+				//0-20      第一级
+				//20-60     第二级
+				//60-100    第三级
+				//100-150   第四级
+				//150-200   第五级
+				//200-300   第六级
+				//300-400   第七级
+				//400-500   第八级
+				//500-600   第九级
+				//600-700   第十级
 				var scorett=setInterval(function(){
-					score++;
-					var scores=document.getElementById("scoreCount");
-					scores.innerHTML="</br>"+score;
+					if(score<=2){
+						level=1;
+						displayTitle(level);
+					} if(2<score&&score<=6){
+						level=2;
+						displayTitle(level);
+					} if(6<score&&score<=10){
+						level=3;
+						displayTitle(level);
+					} if(10<score&&score<=15){
+						level=4;
+						displayTitle(level);
+					} if(15<score&&score<=20){
+						level=5;
+						displayTitle(level);
+					} if(20<score&&score<=30){
+						level=6;
+						displayTitle(level);
+					} if(30<score&&score<=40){
+						level=7;
+						displayTitle(level);
+					} if(40<score&&score<=50){
+						level=8;
+						displayTitle(level);
+					} if(50<score&&score<=60){
+						level=9;
+						displayTitle(level);
+					} if(60<score&&score<=70){
+						level=10;
+						displayTitle(level);
+					} if(70<score){
+						alert("恭喜你，你已经通关了 太厉害了      ：分数："+score);
+						score=0;
+						parentDiv.innerHTML="";
+						location.reload();
+					}
+					console.log(score,level);
 				},1000);
 				//碰撞检测
 				var pp=setInterval(function(){
@@ -47,7 +98,7 @@
 				var numlr=Math.floor(Math.random()*100);//0-99的随机数 左右出现的随机位置
 				var numtop=Math.floor(Math.random()*100);//0-99的随机数 上方出现的随机位置
 				var numtt=Math.floor(Math.random()*100);//0-99的随机数 下方出现的随机位置
-				var imgNumlr=Math.floor(Math.random()*7)+1;//1-7的随机数 左右img序号
+				var imgNumlr=Math.floor(Math.random()*10)+1;//1-10的随机数 左右img序号
 				var imgNumtop=Math.floor(Math.random()*5)+1;//1-5的随机数 上img序号
 				var imgNumtt=Math.floor(Math.random()*2)+1;//1-2的随机数 下img序号
 				var dr=Math.floor(Math.random()*10000000);//0-9999999的随机数 id
@@ -65,7 +116,7 @@
 					imglr="right";
 				}
 				//background-color:red;
-				var divLeftRight="<div id='"+dr+"'  style='width:7%;height:10%;background-image:url("+imglr+imgNumlr+".png"+");z-index:2;background-size:100% 100%;position:fixed;top:"+numlr+"%;left:"+vcount+"%;'></div>";
+				var divLeftRight="<div id='"+dr+"'  style='width:7%;height:10%;background-image:url("+imglr+imgNumlr+".png"+");z-index:2;background-size:100% 100%;position:fixed;top:"+numlr+"%;left:"+vcount+"%;' data-level="+imgNumlr+" data-pop='true'  ></div>";
 				var divTop="<div id='"+topdr+"'  style='width:14%;height:20%;background-image:url(tops"+imgNumtop+".png"+");z-index:1;background-size:100% 100%;position:fixed;top:-20%;left:"+numtop+"%;'></div>";
 				var divtt="<div id='"+ttdr+"'  style='width:14%;height:20%;background-image:url(top"+imgNumtt+".png"+");z-index:4;background-size:100% 100%;position:fixed;top:100%;left:"+numtt+"%;'></div>";
 				
@@ -184,6 +235,22 @@
 			},200);
 			
 		}
+		function scoreAdd(){
+			score++;
+			var scores=document.getElementById("scoreCount");
+			scores.innerHTML=+score;
+		}
+		function displayTitle(levelitem){
+			//debugger
+			document.getElementById("scoreLevelArrdiv").innerHTML="";
+			for(var i=1;i<=level;i++){
+					var item=i+"";
+					var dleft= "<div   id='scoreLevelleft"+item+"'   style='width: 5%; height: 70%;background-image:url(\"left"+item+".png\");z-index:4;background-size:100% 100%;float:left;'></div>"
+					var dright="<div   id='scoreLevelright"+item+"' style='width: 5%; height: 70%;background-image:url(\"right"+item+".png\");z-index:4;background-size:100% 100%;float:left;'></div>"
+					document.getElementById("scoreLevelArrdiv").innerHTML+=dleft+dright;
+					console.log(document.getElementById("scoreLevelArrdiv").innerHTML)
+			}
+		}
 		//判断碰撞
 		//判左右div碰撞
 			function lrpop(){
@@ -212,9 +279,20 @@
 						
 						var R=60;
 						if(RF<R){
-							alert(score);
-							parentDiv.innerHTML="";
-							location.reload();
+							var drlevel=cs[i].getAttribute('data-level');
+							var drpop=cs[i].getAttribute('data-pop');
+							var drdisplay=cs[i].style.display;
+							if(level>=drlevel){
+								if(drpop=='true'){
+									scoreAdd();
+									cs[i].setAttribute('data-pop','false');
+									cs[i].style.display="none";
+								}
+							}else{
+								alert("你死掉了：分数："+score);
+								parentDiv.innerHTML="";
+								location.reload();
+							}
 						}
 					}
 				}
