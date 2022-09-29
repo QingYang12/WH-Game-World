@@ -1,26 +1,25 @@
-
 <html>
 	<head>
-		<meta charset="GBK"/>
+		<meta charset="utf8"/>
 	</head>
 	<body>	
 		<div   id="DDZDiv" style="width:100%;height:100%;background-image:url('doudizhu_Img/backgrandK.png');" align="center">
-			<!-- »¶Ó­½çÃæ -->
+			<!-- æ¬¢è¿ç•Œé¢ -->
 			<div  id="welcomeDiv" style="width:80%;height:80%;display:none;"   align="center">
 				
 				<div  id="welcome2" style="width:20%;height:28%;background-image:url('doudizhu_Img/welcome2.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcome1" style="width:34%;height:20%;background-image:url('doudizhu_Img/welcome1.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcome4" style="width:20%;height:30%;background-image:url('doudizhu_Img/welcome4.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcome3" style="width:30%;height:20%;background-image:url('doudizhu_Img/welcome3.png');background-size:100% 100%;"   align="center"></div>
-				<input type="button"   value="½øÈëÓÎÏ·" onclick="gameplay();"/>
+				<input type="button"   value="è¿›å…¥æ¸¸æˆ" onclick="gameplay();"/>
 			</div>
-			<!-- ÓÎÏ·½çÃæ -->
+			<!-- æ¸¸æˆç•Œé¢ -->
 			<div  id="gameDiv"   style="width:80%;height:80%;display:none;" align="center">
-				<!-- ÈËÎïÍ·Ïñ -->
+				<!-- äººç‰©å¤´åƒ -->
 				<div  id="personC" style="width:10%;height:14%;background-image:url('doudizhu_Img/personC.png');background-size:100% 100%;position:fixed;top:20%;left:5%;"   align="center"></div>
 				<div  id="personB" style="width:10%;height:10%;background-image:url('doudizhu_Img/personB.png');background-size:100% 100%;position:fixed;top:20%;right:5%;"   align="center"></div>
 				<div  id="personA" style="width:20%;height:26%;background-image:url('doudizhu_Img/personA.png');background-size:100% 100%;position:fixed;bottom:5%;left:10%;"   align="center"></div>
-				<!-- ·¢ÅÆÇø -->
+				<!-- å‘ç‰ŒåŒº -->
 				<div  id="back" style="width:10%;height:15%;background-image:url('doudizhu_Img/back.png');background-size:100% 100%;position:fixed;bottom:5%;right:5%;"   align="center"></div>
 				<div  id="backa" style="width:10%;height:15%;background-image:url('doudizhu_Img/back.png');background-size:100% 100%;position:fixed;bottom:5%;right:5%;"   align="center"></div>
 				<div  id="backaa" style="width:10%;height:15%;background-image:url('doudizhu_Img/back.png');background-size:100% 100%;position:fixed;bottom:5%;right:5%;"   align="center"></div>
@@ -39,82 +38,82 @@
 							</div>
 					     </div>-->
 				</div>
-				<!-- ²Ù×÷À¸ -->
+				<!-- æ“ä½œæ  -->
 				<div  id="personAlist2" style="width:40%;height:5%;position:fixed;bottom:30%;left:30%;z-index:0;"   align="center">
-					<input type="button"   value="·¢ÅÆ" onclick="pushcard();"/>
-					<input type="button"   value="³öÅÆ" onclick="yesCard();"/>
-					<input type="button"   value="²»Òª" onclick="notCard();"/>
+					<input type="button"   value="å‘ç‰Œ" onclick="pushcard();"/>
+					<input type="button"   value="å‡ºç‰Œ" onclick="yesCard();"/>
+					<input type="button"   value="ä¸è¦" onclick="notCard();"/>
 					<input type="button"   value="test" onclick="test();"/>
-					<input type="button"   value="ÍË³ö" onclick="gowelcome();"/>
+					<input type="button"   value="é€€å‡º" onclick="gowelcome();"/>
 				</div>
 			</div>
-			<!-- ½áËã½çÃæ -->
+			<!-- ç»“ç®—ç•Œé¢ -->
 			<div  id="accountDiv" style="width:80%;height:80%;display:none;z-index:9999;border:1px solid #F00" align="center">
 				<div  id="welcomeDiv" style="width:20%;height:20%;background-image:url('doudizhu_Img/lose.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcomeDiv" style="width:20%;height:20%;background-image:url('doudizhu_Img/winner1.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcomeDiv" style="width:20%;height:20%;background-image:url('doudizhu_Img/winner2.png');background-size:100% 100%;"   align="center"></div>
 				<div  id="welcomeDiv" style="width:20%;height:20%;background-image:url('doudizhu_Img/winner3.png');background-size:100% 100%;"   align="center"></div>
-				<input type="button"   value="¼ÌĞøÓÎÏ·" onclick="gameplay();"/>
-				<input type="button"   value="ÖØĞÂÓÎÏ·" onclick="gameplay();"/>
+				<input type="button"   value="ç»§ç»­æ¸¸æˆ" onclick="gameplay();"/>
+				<input type="button"   value="é‡æ–°æ¸¸æˆ" onclick="gameplay();"/>
 			</div>
 		</div>
 		
 	</body>
 	<script>
-		<!-- ¶¨ÒåËµÃ÷-->
+		//<!-- å®šä¹‰è¯´æ˜-->
 			/*  
-			1.ÆË¿ËÅÆÔªÊı£º4Î»/0000£»1-2Î»ÊÇÅÆµÄ´óĞ¡1-13£»3-4Î»ÊÇÅÆµÄ»¨É«1-4/ºìÌÒ1/ºÚÌÒ2/Ã·»¨3/·½Æ¬4£»´óÍõ£ºzzzzĞ¡Íõ£ºxxxx£»
+			1.æ‰‘å…‹ç‰Œå…ƒæ•°ï¼š4ä½/0000ï¼›1-2ä½æ˜¯ç‰Œçš„å¤§å°1-13ï¼›3-4ä½æ˜¯ç‰Œçš„èŠ±è‰²1-4/çº¢æ¡ƒ1/é»‘æ¡ƒ2/æ¢…èŠ±3/æ–¹ç‰‡4ï¼›å¤§ç‹ï¼šzzzzå°ç‹ï¼šxxxxï¼›
 			2.
 			3.
 			4.
 			5.
 			*/
-		<!-- ÉùÃ÷-->
-			//»ØºÏ¿ØÖÆ
+		//<!-- å£°æ˜-->
+			//å›åˆæ§åˆ¶
 			var cyclelist=[{key:"a",value:false,top:"90%",left:"40%"},{key:"b",value:true,top:"35%",left:"85%"},{key:"c",value:true,top:"35%",left:"5%"}]
 			var cycleCount=0;
 			var cycleNext=true;
-			//1.Ò»¸±ĞÂÆË¿ËÅÆ
+			//1.ä¸€å‰¯æ–°æ‰‘å…‹ç‰Œ
 			var newPukeCards=["zzzz","xxxx","0101","0201","0301","0401","0501","0601","0701","0801","0901","1001","1101","1201","1301","0102","0202","0302","0402","0502","0602","0702","0802","0902","1002","1102","1202","1302","0103","0203","0303","0403","0503","0603","0703","0803","0903","1003","1103","1203","1303","0104","0204","0304","0404","0504","0604","0704","0804","0904","1004","1104","1204","1304"];
-			//2.´òÂÒºóµÄÆË¿ËÅÆ
+			//2.æ‰“ä¹±åçš„æ‰‘å…‹ç‰Œ
 			var swimPukeCards=[];
-			//3.0-53µÄËæ»úÊı
+			//3.0-53çš„éšæœºæ•°
 			var templist=[];
-			//4.A¡¢B¡¢C¡¢Èı¸öÈËµÄÊÖÅÆ
+			//4.Aã€Bã€Cã€ä¸‰ä¸ªäººçš„æ‰‹ç‰Œ
 			var ACards=[];
 			var BCards=[];
 			var CCards=[];
-			//5.ÒÑ³öµÄ×ÀÃæÉÏµÄÆË¿ËÅÆ
+			//5.å·²å‡ºçš„æ¡Œé¢ä¸Šçš„æ‰‘å…‹ç‰Œ
 			var publicShowCards=[];
-			//6.ÉÏ°ÑÆË¿ËÅÆ¼¯ºÏ
+			//6.ä¸ŠæŠŠæ‰‘å…‹ç‰Œé›†åˆ
 			var tempPukeCards=[];
-			//7.´ı³öÆË¿ËÅÆ¼¯ºÏ
+			//7.å¾…å‡ºæ‰‘å…‹ç‰Œé›†åˆ
 			var waitPukeCards=[];
 			
-		<!-- ³õÊ¼»¯ -->
+		//<!-- åˆå§‹åŒ– -->
 			loadWelcome();
 			cycleControl();
 			
-		<!-- ¼ÓÔØ»¶Ó­½çÃæ -->
+		//<!-- åŠ è½½æ¬¢è¿ç•Œé¢ -->
 			function loadWelcome(){
 				document.getElementById("welcomeDiv").style.display="block";
 				document.getElementById("gameDiv").style.display="none";
 				document.getElementById("accountDiv").style.display="none";
 			}
-		<!-- ¼ÓÔØÓÎÏ·½çÃæ -->
+		//<!-- åŠ è½½æ¸¸æˆç•Œé¢ -->
 			function loadGameplay(){
 				document.getElementById("welcomeDiv").style.display="none";
 				document.getElementById("gameDiv").style.display="block";
 				document.getElementById("accountDiv").style.display="none";
 			}
-		<!-- ¼ÓÔØ½áËã½çÃæ -->
+		//<!-- åŠ è½½ç»“ç®—ç•Œé¢ -->
 			function loadAccountscore(){
 				document.getElementById("welcomeDiv").style.display="none";
 				document.getElementById("gameDiv").style.display="none";
 				document.getElementById("accountDiv").style.display="block";
 			}
-		<!-- ¶¯»­ -->
-			<!-- ¶¯»­Ï´ÅÆ -->
+		//<!-- åŠ¨ç”» -->
+			//<!-- åŠ¨ç”»æ´—ç‰Œ -->
 			function ShuffleCardsFlash(){
 				x=0;
 				var ShuffleCards1=setInterval(function (){
@@ -124,7 +123,7 @@
 						//console.log(x);
 					},1000);
 				var ShuffleCards3=setInterval(function (){
-						if(x<100){//Ï´ÅÆµÄÊ±¼ä1s
+						if(x<100){//æ´—ç‰Œçš„æ—¶é—´1s
 							if(x%4==0){
 								document.getElementById("backaa").style.right="15%";
 								document.getElementById("backaa").style.bottom="5%";
@@ -151,7 +150,7 @@
 						
 					},10);
 			}
-			<!-- ¶¯»­·¢ÅÆ -->
+			//<!-- åŠ¨ç”»å‘ç‰Œ -->
 			function pushcardFlash(){
 				document.getElementById("backa").style.right="65%";
 				document.getElementById("backa").style.bottom="15%";
@@ -215,17 +214,17 @@
 						
 					},10);
 			}
-			<!-- ¶¯»­³öÅÆ -->
-		<!-- ²Ù×÷ -->
-			<!-- ¿ªÊ¼ÓÎÏ· -->
+			//<!-- åŠ¨ç”»å‡ºç‰Œ -->
+		//<!-- æ“ä½œ -->
+			//<!-- å¼€å§‹æ¸¸æˆ -->
 			function gameplay(){
 				loadGameplay();
 			}
-			<!-- ÖØĞÂ¿ªÊ¼ -->
+			//<!-- é‡æ–°å¼€å§‹ -->
 			function restartgameplay(){
 				loadGameplay();
 			}
-			<!-- ¼ÌĞøÓÎÏ· -->
+			//<!-- ç»§ç»­æ¸¸æˆ -->
 			function continuegameplay(){
 				loadGameplay();
 			}
@@ -235,18 +234,18 @@
 			function gowelcome(){
 				loadWelcome();
 			}
-			<!-- ·¢ÅÆ -->
+			//<!-- å‘ç‰Œ -->
 			function pushcard(){
-				//´¥·¢Ï´ÅÆ¶¯»­
+				//è§¦å‘æ´—ç‰ŒåŠ¨ç”»
 				ShuffleCardsFlash();
-				//Ï´ÅÆ
+				//æ´—ç‰Œ
 				ShuffleCards();
-				//Ï´ÅÆ3sºó´¥·¢·¢ÅÆ¶¯»­
+				//æ´—ç‰Œ3såè§¦å‘å‘ç‰ŒåŠ¨ç”»
 				var t=setTimeout(function (){
-						//´¥·¢·¢ÅÆ¶¯»­
-						pushcardFlash();//·¢ÅÆ¶¯»­³ÖĞø3s
-						//51ÕÅ
-						//·Ö·¢ÅÆµ½ACards BCards CCards
+						//è§¦å‘å‘ç‰ŒåŠ¨ç”»
+						pushcardFlash();//å‘ç‰ŒåŠ¨ç”»æŒç»­3s
+						//51å¼ 
+						//åˆ†å‘ç‰Œåˆ°ACards BCards CCards
 						for(var i=0;i<=50;i++){
 							if(i%3==0){
 								ACards.push(swimPukeCards[i]);
@@ -268,7 +267,7 @@
 						}
 						clearTimeout(t);
 					},3000);
-				//Ï´ÅÆ6sºóÏÔÊ¾·¢µ½ÊÖµÄÆË¿ËÅÆ
+				//æ´—ç‰Œ6såæ˜¾ç¤ºå‘åˆ°æ‰‹çš„æ‰‘å…‹ç‰Œ
 				var v=setTimeout(function (){
 						  var str="";
 						  //ACards
@@ -279,9 +278,9 @@
 							console.log(tempHS);
 							var tempIndex=i;
 							console.log(tempIndex);
-							//µ×ÎÆ
+							//åº•çº¹
 							var imp="";
-							//ÏÔÊ¾»¨É«
+							//æ˜¾ç¤ºèŠ±è‰²
 							var HS="";
 							if(tempHS=="01"){
 								HS="doudizhu_Img/hongtao.png";
@@ -292,7 +291,7 @@
 							}else if(tempHS=="04"){
 								HS="doudizhu_Img/fangpian.png";
 							}
-							//ÏÔÊ¾Êı×Ö
+							//æ˜¾ç¤ºæ•°å­—
 							var Num="";
 							if(tempNum=="11"){
 								Num="J";
@@ -303,7 +302,7 @@
 							}else if(tempNum!="zz"&&tempNum!="xx"){
 								Num=tempNum;
 							}
-							//ÏÔÊ¾´óĞ¡Íõ
+							//æ˜¾ç¤ºå¤§å°ç‹
 							if(tempNum=="zz"){
 								imp="doudizhu_Img/joker1.png";
 								Num="&nbsp J</br>&nbsp o</br>&nbsp k</br>&nbsp e</br>&nbsp r</br>";
@@ -331,7 +330,7 @@
 					},6000);
 				
 			}
-			<!-- ³öÅÆ -->
+			//<!-- å‡ºç‰Œ -->
 			function yesCard(){
 				if(ruleCheck()){
 					alert("next");
@@ -340,7 +339,7 @@
 						publicShowCards.push(waitPukeCards[i]); 
 					}
 					waitPukeCards=[];
-					//ÏÂÒ»»ØºÏ
+					//ä¸‹ä¸€å›åˆ
 					for(var i=0;i<=cyclelist.length-1;i++){
 						if(cyclelist[i].key=="a"){
 							cyclelist[i].value=true;
@@ -350,9 +349,9 @@
 					alert("stop");
 				}
 			}
-			<!-- Ñ¡ÅÆ -->
+			//<!-- é€‰ç‰Œ -->
 			function nextpush(index){
-				//alert("Ñ¡ÅÆ");
+				//alert("é€‰ç‰Œ");
 				var personAlists=document.getElementById("personAlist");
 				var personAlist_wait=document.getElementById("personAlist_wait");
 				var thisNode=document.getElementById(index);
@@ -362,9 +361,9 @@
 				personAlist_wait.appendChild(thisNode);
 				
 			}
-			<!-- ÍËÑ¡ÅÆ -->
+			//<!-- é€€é€‰ç‰Œ -->
 			function gobackpull(index){
-				//alert("ÍËÑ¡ÅÆ");
+				//alert("é€€é€‰ç‰Œ");
 				var personAlists=document.getElementById("personAlist");
 				var personAlist_wait=document.getElementById("personAlist_wait");
 				var thisNode=document.getElementById(index);
@@ -374,11 +373,11 @@
 				waitPukeCards.slice(thisNode);
 				//alert(JSON.stringify(waitPukeCards));
 			}
-			<!-- ²»Òª -->
-		<!-- ÓÎÏ·ÄÚËã·¨ -->
-			<!-- Ï´ÅÆ -->
+			//<!-- ä¸è¦ -->
+		//<!-- æ¸¸æˆå†…ç®—æ³• -->
+			//<!-- æ´—ç‰Œ -->
 			function ShuffleCards(){
-				//Çå¿ÕËùÓĞ¼¯ºÏ ³õÊ¼»¯
+				//æ¸…ç©ºæ‰€æœ‰é›†åˆ åˆå§‹åŒ–
 				swimPukeCards=[];
 				templist=[];
 				ACards=[];
@@ -386,13 +385,13 @@
 				CCards=[];
 				publicShowCards=[];
 				
-				getrandom();//È¡0-53µÄËæ»úÊı
+				getrandom();//å–0-53çš„éšæœºæ•°
 				for(var i=0;i<=templist.length-1;i++){
 					swimPukeCards.push(newPukeCards[templist[i]]);
 				}
 			}
 			function getrandom(){
-				//0-53µÄËæ»úÊı
+				//0-53çš„éšæœºæ•°
 				var temp=Math.floor(Math.random()*54);//0-53
 				for(var i=0;i<=53;i++){
 					if(templist[i]==temp){
@@ -406,32 +405,32 @@
 					return getrandom();
 				}
 			}
-			<!-- µØÖ÷ -->
-			<!-- »ØºÏ¿ØÖÆ -->
+			//<!-- åœ°ä¸» -->
+			//<!-- å›åˆæ§åˆ¶ -->
 			function cycleControl(){
 				var times=setInterval(function (){
 								var count=cycleCount%3;
-								//Ö¸Õë¶¯»­
+								//æŒ‡é’ˆåŠ¨ç”»
 								document.getElementById("pointer").style.top=cyclelist[count].top;
 								document.getElementById("pointer").style.left=cyclelist[count].left;
 								console.log(count);
 								if(cyclelist[count].value==true){
-									//ÒÑ¾­³öÅÆ£¬next
-									console.log(cyclelist[count].key+":ÒÑ¾­³öÅÆÁË,»ØºÏnext:"+cyclelist[(count+1)%3].key);
-									//cyclelist[count].value=false;//³õÊ¼»¯
+									//å·²ç»å‡ºç‰Œï¼Œnext
+									console.log(cyclelist[count].key+":å·²ç»å‡ºç‰Œäº†,å›åˆnext:"+cyclelist[(count+1)%3].key);
+									//cyclelist[count].value=false;//åˆå§‹åŒ–
 									if(cyclelist[count].key=="a"){
-										cyclelist[count].value=false;//³õÊ¼»¯
+										cyclelist[count].value=false;//åˆå§‹åŒ–
 									}
 									cycleCount++;
 								}else{
-									//Î´³öÅÆ£¬stop
+									//æœªå‡ºç‰Œï¼Œstop
 								}
 						},100);
 			}
-			<!-- ¹æÔòĞ£Ñé -->
+			//<!-- è§„åˆ™æ ¡éªŒ -->
 			function ruleCheck(){
 				var key=false;
-				//µã»÷³öÅÆÊ±´¥·¢
+				//ç‚¹å‡»å‡ºç‰Œæ—¶è§¦å‘
 				if(!tempPukeCards.length>0){
 					tempPukeCards.push("0000")
 				}
@@ -442,15 +441,15 @@
 					key=true;
 				}else{
 					key=false;
-					alert("²»·ûºÏ³öÅÆ¹æÔò");
+					alert("ä¸ç¬¦åˆå‡ºç‰Œè§„åˆ™");
 				}
 				return key
 			}
-			<!-- »ñÊ¤½áÊøÅĞ¶Ï -->
-			<!-- ·ÖÊı½áËã -->
-			<!-- ¼ÆÊı -->
+			//<!-- è·èƒœç»“æŸåˆ¤æ–­ -->
+			//<!-- åˆ†æ•°ç»“ç®— -->
+			//<!-- è®¡æ•° -->
 			
-			<!-- AI³öÅÆ¹æÔò -->
+			//<!-- AIå‡ºç‰Œè§„åˆ™ -->
 
 	</script>
 
