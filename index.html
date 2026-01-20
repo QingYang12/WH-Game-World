@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WH Game World - 门户首页</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+            color: #fff;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .matrix-bg canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(0, 174, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #00aeff, #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 174, 255, 0.5);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 180px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #00aeff;
+            box-shadow: 0 10px 30px rgba(0, 174, 255, 0.3);
+        }
+        .card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* 针对不同模块的图标占位或文字修饰 */
+        .icon {
+            font-style: normal;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>WH World 数字化枢纽</h1>
+            <p>集成 DevOps、AI 与 多媒体处理的一站式量子平台</p>
+        </header>
+
+        <div class="grid">
+            <a href="https://test.wanghaonet.com/" class="card">
+                <span class="icon">🚀</span>
+                <h3>WHDEVOPS</h3>
+                <p>自动化部署与全链路监控</p>
+            </a>
+            <a href="http://wiki.wanghaonet.com/" class="card">
+                <span class="icon">💬</span>
+                <h3>WH论坛</h3>
+                <p>量子社区技术交流</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">📚</span>
+                <h3>Wiki</h3>
+                <p>知识库与技术文档</p>
+            </a>
+            <a href="realtimevoice.html" class="card">
+                <span class="icon">🤖</span>
+                <h3>AI助手</h3>
+                <p>基于 550W 的智能对话</p>
+            </a>
+            <a href="http://aiagent.wanghaonet.com/image_editor.html" class="card">
+                <span class="icon">🎨</span>
+                <h3>图片处理</h3>
+                <p>智能扩图与风格迁移</p>
+            </a>
+            <a href="http://aiagent.wanghaonet.com/douyin.html" class="card">
+                <span class="icon">🎬</span>
+                <h3>视频处理</h3>
+                <p>云端剪辑与特效合成</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">🧊</span>
+                <h3>3D模型设计</h3>
+                <p>三维建模与量子渲染</p>
+            </a>
+            <a href="http://aiagent.wanghaonet.com/douyin.html" class="card">
+                <span class="icon">👤</span>
+                <h3>数字人</h3>
+                <p>量子级交互体验</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">🎮</span>
+                <h3>硬件遥控面板</h3>
+                <p>物联网远程指令中心</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">🏭</span>
+                <h3>智能制造</h3>
+                <p>数字孪生与工业自动化</p>
+            </a>
+            <a href="http://dify.wanghaonet.com/" class="card">
+                <span class="icon">⛓️</span>
+                <h3>AI工作流</h3>
+                <p>低代码 AI 节点编排</p>
+            </a>
+            <a href="http://openhands.wanghaonet.com/" class="card">
+                <span class="icon">💻</span>
+                <h3>AI编程</h3>
+                <p>辅助开发与自动化重构</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">🧠</span>
+                <h3>AI训练</h3>
+                <p>大规模模型微调与参数优化</p>
+            </a>
+            <a href="#" class="card">
+                <span class="icon">🖥️</span>
+                <h3>AI Agent终端</h3>
+                <p>多智能体协作与任务自动执行</p>
+            </a>
+            <a href="http://ssh.wanghaonet.com/" class="card">
+                <span class="icon">☁️</span>
+                <h3>云主机</h3>
+                <p>高性能量子计算实例</p>
+            </a>
+            <a href="index1.html" class="card">
+                <span class="icon">🕹️</span>
+                <h3>Game</h3>
+                <p>休闲益智游戏集锦</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 WH-Game-World. Powered by 550W Quantum System.</p>
+    </footer>
+
+    <script>
+        // Matrix 背景特效
+        (function() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * canvas.height / fontSize;
+            }
+
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}()+-*/=!@#$%^&*';
+
+            function draw() {
+                ctx.fillStyle = 'rgba(15, 32, 39, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#00aeff';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+                    ctx.fillText(text, x, y);
+                    if (y > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 33);
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                const newColumns = canvas.width / fontSize;
+                drops.length = 0;
+                for (let i = 0; i < newColumns; i++) {
+                    drops[i] = Math.random() * canvas.height / fontSize;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
